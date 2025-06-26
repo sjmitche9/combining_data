@@ -96,14 +96,14 @@ WHERE supplierid IN
 	WHERE country = 'Germany');
 
 SELECT * FROM order_details
-LIMIT 10;
+LIMIT 3;
 
 -- Show orderid and country for orders with higher than average total value (including discount)
 SELECT orderid, shipcountry
 FROM orders
 WHERE orderid IN
 	-- filter to keep only orders above average total value
-	(SELECT	orderid
+	(SELECT	*
 	FROM order_details
 	GROUP BY orderid
 	HAVING SUM(unitprice * quantity * (1-discount)) >
